@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{
+  font-family: 'Poppins' , 'sans-serif';
+  scroll-behavior: smooth;
+}
+.error{
+  color:#ff003c !important ;
+  @apply text-[12px]
+}
+@layer utilities{
+  @variants responsive {
+    .no-scrollbar::-webkit-scrollbar{
+      display: none;
+    }
+  }
+} 
+.background{
+  background-image : url('./pages/Profiles/assets/bg1.png');
+  background-size: cover; 
+  background-repeat: repeat; 
+}
+.bg-leader{
+  background-color:rgba(45, 49, 166, 0.2)
+}
