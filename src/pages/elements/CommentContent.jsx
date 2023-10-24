@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import Api from '../../utils/axios'
 
 import ForumOwnerData from './forumOwnerData'
-import arrowUp from '../assets/icons/arrow-up.png'
+import LikeButton from './LikeButton'
+// import arrowUp from '../assets/icons/arrow-up.png'
 
 const CommentContent = ({ comment, post, RefreshData }) => {
   const user = useSelector(state => state.user)
@@ -18,11 +19,11 @@ const CommentContent = ({ comment, post, RefreshData }) => {
     )
   }
 
-  const handelLikeUnlikeComment = () =>
-    Api.put(`/client/forum/comment/${comment._id}`).finally(() => RefreshData())
+  // const handelLikeUnlikeComment = () =>
+  //   Api.put(`/client/forum/comment/${comment._id}`).finally(() => RefreshData())
 
   return (
-    <div className=' relative flex flex-col gap-2 bg-gray-100 w-full py-4 px-6 rounded-2xl shadow-md'>
+    <div className=' relative flex flex-col gap-2 bg-gray-100 w-full py-4 px-6 border-y-[0.5px] border-y-gray-300 '>
       {(comment.owner._id === user.user.id ||
         post.owner._id === user.user.id) && (
         <div className=' absolute top-3 right-3'>
@@ -53,12 +54,12 @@ const CommentContent = ({ comment, post, RefreshData }) => {
       </div>
       <div className=' flex justify-between items-center'>
         <div className=' flex items-center gap-4'>
-          <button
-            onClick={handelLikeUnlikeComment}
-            className=' flex items-center gap-2 text-gray-500'
-          >
-            <img src={arrowUp} alt='' /> {comment.likes.length}
-          </button>
+          <LikeButton
+            type='comment'
+            likes={comment.likes}
+            id={comment._id}
+            onFinish={RefreshData}
+          />
         </div>
       </div>
     </div>

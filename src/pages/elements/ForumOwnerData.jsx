@@ -1,6 +1,6 @@
 import { getTimeDiff } from "../../utils/Date"
 import profilePic from '../assets/profile_pic.jpg'
-import {BsFillBriefcaseFill, BsPerson} from 'react-icons/bs'
+import {BsBriefcase, BsPerson} from 'react-icons/bs'
 
 export default function ForumOwnerData({user, date}) {
 
@@ -13,13 +13,14 @@ export default function ForumOwnerData({user, date}) {
           alt={user?.username}
         />
         <div>
-        <p className='text-base capitalize font-semibold'>
-                {user?.firstname} {user?.lastname} {user.role !== 'student' ? <BsPerson className="inline"/> : <BsFillBriefcaseFill className="inline"/>} -{' '}
+
+        <p className='text-base capitalize font-semibold hover:underline cursor-pointer'>
+                {user?.firstname} {user?.lastname} {user.role === 'student' ? <BsPerson className="inline"/> : <BsBriefcase className="inline"/>} -{' '}
                 <span className='text-[#595959] normal-case font-normal'>
                   @{user?.username}
                 </span>
               </p>
-          {date && <span className=' text-xs text-[green] text-gray-600'>{getTimeDiff(date)}</span>}
+          {date && <span className=' text-xs text-gray-400 capitalize'>{getTimeDiff(date)}</span>}
         </div>
       </div>
   )

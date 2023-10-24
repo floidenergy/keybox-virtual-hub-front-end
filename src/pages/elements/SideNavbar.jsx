@@ -10,7 +10,7 @@ const SideNavBar = () => {
     return location.pathname === path
   }
   return (
-    <div className='  bg-darkBlue min-w-[100%] px-8 py-6 h-[100%] flex flex-col justify-between text-gray-100 '>
+    <aside className='  bg-darkBlue min-w-[100%] px-8 py-6 h-[100%] flex flex-col justify-between text-gray-100 '>
       <img className=' w-[80px]' src={logo} alt='' />
       <ul className=' w-full flex flex-col justify-between gap-8 text-xl font-meduim'>
         <li>
@@ -75,7 +75,7 @@ const SideNavBar = () => {
           <img src={logout} alt='' />
         </NavLink>
       </div>
-    </div>
+    </aside>
   )
 }
 

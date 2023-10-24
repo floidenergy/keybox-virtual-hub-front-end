@@ -6,8 +6,8 @@ import { BsThreeDots } from 'react-icons/bs'
 import Api from '../../utils/axios'
 
 import vector3 from '../assets/icons/vector3.png'
-import arrowUp from '../assets/icons/arrow-up.png'
 
+import LikeButton from './LikeButton'
 import ForumOwnerData from './forumOwnerData'
 
 import CommentContent from './CommentContent'
@@ -34,9 +34,6 @@ const PostPopUp = ({ postData, onClickOutSide, RefreshData }) => {
     RefreshData()
   }
 
-  const handelLikeDislikePost = () =>
-    Api.put(`/client/forum/${postData._id}`).finally(() => RefreshData())
-
   return (
     <div className='continer w-[100vw] h-[100vh] bg-[#00000099] fixed top-0 right-0 z-10'>
       {/* background */}
@@ -44,7 +41,7 @@ const PostPopUp = ({ postData, onClickOutSide, RefreshData }) => {
         onClick={onClickOutSide}
         className='continer z-[-1] w-[100vw] h-[100vh] fixed top-0 right-0 z-10'
       ></div>
-      <div className='flex fixed overflow-x-hidden top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex-col w-[75%] h-[75%] overflow-y-scroll gap-2 bg-gray-100 pt-4  rounded-2xl shadow-md'>
+      <div className='flex fixed overflow-x-hidden top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex-col w-[75%] h-[75%] overflow-y-scroll gap-2 bg-gray-100 pt-4 rounded-md shadow-md'>
         {postData.owner._id === user.user.id && (
           <div className=' absolute top-3 right-3'>
             <button onClick={() => setIsOption(!isOption)}>
@@ -85,12 +82,12 @@ const PostPopUp = ({ postData, onClickOutSide, RefreshData }) => {
                 <img src={vector3} alt='' /> {postData.comments.length}
               </div>
               <div>
-                <button
-                  onClick={handelLikeDislikePost}
-                  className=' flex items-center gap-2 text-gray-500 z-10'
-                >
-                  <img src={arrowUp} alt='' /> {postData?.likes?.length}
-                </button>
+                <LikeButton
+                  type='post'
+                  likes={postData.likes}
+                  id={postData._id}
+                  onFinish={RefreshData}
+                />
               </div>
             </div>
           </div>

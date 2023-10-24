@@ -7,6 +7,7 @@ import { User } from './pages/Profiles/User'
 import { LeaderBoard } from './pages/Profiles/LeaderBoard'
 import Forum from './pages/Profiles/forum/Forum'
 import PostForum from './pages/Profiles/forum/PostForum'
+import Challenge from './pages/Profiles/challenges/Challenge'
 import Courses from './pages/Profiles/courses'
 import Logout from './pages/Logout'
 
@@ -24,6 +25,9 @@ function App () {
           <Route path={'forum'}>
             <Route index element={<Forum />} />
             <Route path="new" element={<PostForum />} />
+          </Route>
+          <Route path='challenges' >
+            <Route index element={<Challenge />} />
           </Route>
           <Route path='courses' element={<Courses />} />
         </Route>

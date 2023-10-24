@@ -5,10 +5,10 @@ import { BsThreeDots } from 'react-icons/bs'
 import Api from '../../utils/axios'
 
 import ForumOwnerData from './forumOwnerData'
+import LikeButton from './LikeButton'
 import PostPopUp from './postPopUp'
 
 import vector3 from '../assets/icons/vector3.png'
-import arrowUp from '../assets/icons/arrow-up.png'
 
 const PostCard = ({ postData, RefreshData }) => {
   const user = useSelector(state => state.user)
@@ -20,11 +20,8 @@ const PostCard = ({ postData, RefreshData }) => {
     Api.delete(`/client/forum/${postData._id}`).finally(() => RefreshData())
   }
 
-  const handelLikeDislikePost = () =>
-    Api.put(`/client/forum/${postData._id}`).finally(() => RefreshData())
-
   return (
-    <div className='flex flex-col gap-2 bg-gray-100 py-4 px-6 rounded-2xl shadow-md'>
+    <div className='flex flex-col gap-2 bg-gray-100 py-4 px-6 rounded-md shadow-md'>
       {isPopUp && (
         <PostPopUp
           postData={postData}
@@ -82,12 +79,12 @@ const PostCard = ({ postData, RefreshData }) => {
           <img src={vector3} alt='' /> {postData?.comments?.length}
         </div>
         <div>
-          <button
-            onClick={handelLikeDislikePost}
-            className=' flex items-center gap-2 text-gray-500 z-10'
-          >
-            <img src={arrowUp} alt='' /> {postData?.likes?.length}
-          </button>
+          <LikeButton
+            type='post'
+            likes={postData.likes}
+            id={postData._id}
+            onFinish={RefreshData}
+          />
         </div>
       </div>
     </div>
