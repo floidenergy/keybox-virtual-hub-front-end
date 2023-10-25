@@ -4,7 +4,7 @@ import { BsThreeDots } from 'react-icons/bs'
 
 import Api from '../../utils/axios'
 
-import ForumOwnerData from './forumOwnerData'
+import ForumOwnerData from './ForumOwnerData'
 import LikeButton from './LikeButton'
 import PostPopUp from './postPopUp'
 
