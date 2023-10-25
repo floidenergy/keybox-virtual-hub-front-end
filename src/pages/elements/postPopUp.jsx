@@ -8,7 +8,7 @@ import Api from '../../utils/axios'
 import vector3 from '../assets/icons/vector3.png'
 
 import LikeButton from './LikeButton'
-import ForumOwnerData from './forumOwnerData'
+import ForumOwnerData from './ForumOwnerData'
 
 import CommentContent from './CommentContent'
 

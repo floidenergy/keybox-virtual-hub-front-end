@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import Api from '../../utils/axios'
 
-import ForumOwnerData from './forumOwnerData'
+import ForumOwnerData from './ForumOwnerData'
 import LikeButton from './LikeButton'
 // import arrowUp from '../assets/icons/arrow-up.png'
 
