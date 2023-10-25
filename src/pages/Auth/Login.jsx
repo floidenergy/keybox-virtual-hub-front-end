@@ -1,13 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { login } from '../../store/features/user'
-
-import { base_url } from '../../utils/base_url'
+import Api from '../../utils/axios'
 
 import { Input } from '../elements/Input'
 import lettreBox from '../assets/letterBox.png'
@@ -43,11 +41,10 @@ const LogIn = () => {
     },
     validationSchema: userSchema,
     onSubmit: values => {
-      axios
-        .post(`${base_url}/auth/login`, values, { withCredentials: true })
+      Api
+        .post(`/auth/login`, values)
         .then(res => {
           const userData = res.data
-          // localStorage.setItem('userData', JSON.stringify(junctionData))
           dispatch(login(userData))
 
           setLoginSucc(res?.data?.message || 'successfully logged in')

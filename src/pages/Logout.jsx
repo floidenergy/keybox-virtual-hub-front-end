@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import axios from 'axios'
+
 
 import { logout } from '../store/features/user'
+import Api from '../utils/axios'
 
-import { base_url } from '../utils/base_url'
 
 export default function Logout () {
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ export default function Logout () {
 
   
   useEffect(() => {
-    axios.get(`${base_url}/auth/logout`, {withCredentials: true})
+    Api.get(`/auth/logout`)
     .finally(() => {
       dispatch(logout())
       navigate('/login')
